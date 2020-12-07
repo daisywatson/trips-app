@@ -1,76 +1,119 @@
-import './App.css';
-import React, {useState, useEffect} from "react"
-import { ReactBingmaps } from 'react-bingmaps';
+import React, { Component } from 'react';
+//import Map from './Map';
+import LoginRegisterForm from './LoginRegisterForm';
+import Header from './Header';
+
+export default class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      loggedIn: false,
+      loggedInUsername: ''
+    }
+  }
 
 
-function App() {
+register = async (registerInfo) => {
+  console.log("register() in App.js called with the following info", registerInfo);
+  const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
 
-  const [center, setCenter] = useState([40.98388529354977, -74.12139200405326])
-  const [pins, setPins] = useState(
-    [
-      {
-        "location":[40.98388529354977, -74.12139200405326],
-        "option":{ title: 'Ridgewood',
-        subTitle: 'Train Station',
-        text: 'R',
-        color: 'red' }
-      },
-      {
-        "location":[40.939758597978816, -74.12149282966999],
-        "option":{ title: 'Radburn',
-        subTitle: 'Fair Lawn Train Station',
-        text: 'FL',
-        color: 'blue' }
+  try {
+    const registerResponse = await fetch(url, {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(registerInfo),
+      headers: {
+        'Content-Type': 'application/json'
       }
-    ]
-  )
+    })
+    console.log("registerResponse", registerResponse);
+    const registerJson = await registerResponse.json()
+    console.log("registerJson", registerJson);
 
-  const editCenter = (lat, long) => {
-    setCenter([lat, long])
+     if(registerResponse.status === 201) {
+       this.setState({
+         loggedIn: true,
+         loggedInUsername: registerJson.data.username
+       })
+     }
+  } catch(err) {
+    console.error("Error trying to register with API")
+    console.error(err)
   }
-
-  const editPins = (pin1, pin2) => {
-    setPins(
-      [pin1, pin2]
-    )
-  }
-
-  //LACMA
-  // editCenter(34.064714432302424, -118.35708353279432)
-  // console.log(center)
-  const tester = () => {
-    let pin1 = {
-      "location":[40.939758597978816, -74.12149282966999],
-      "option":{ title: 'Radburn',
-      subTitle: 'Fair Lawn Train Station',
-      text: 'FL',
-      color: 'blue' }
-    }
-    let pin2 = {
-      "location":[40.91742035459595, -74.0756392026871],
-      "option":{ title: 'Garden State Plaza',
-      subTitle: 'Mall',
-      text: 'GSP',
-      color: 'green' }
-    }
-    editPins(pin1, pin2)
-  }
-
-
-//   useEffect(() => {
-//     tester()
-// }, [])
-
-  return (
-    <div className="App" style={{ height: '100vh', width: '100%' }}>
-    <ReactBingmaps
-    bingmapKey = {process.env.REACT_APP_BING_API_KEY}
-    center = {center}
-    pushPins = {pins}
-    >
-    </ReactBingmaps>
-    </div>
-  );
 }
 
-export default App;
+login = async (loginInfo) => {
+  console.log("login() in App.js called with the following info", loginInfo);
+  const url = process.env.REACT_APP_API_URL + '/api/v1/users/login'
+
+  try {
+    const loginResponse = await fetch(url, {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(loginInfo),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    console.log("loginResponse", loginResponse);
+    const loginJson = await loginResponse.json()
+    console.log("loginJson", loginJson);
+
+    if(loginResponse.status === 200) {
+        this.setState({
+          loggedIn: true,
+          loggedInUsername: loginJson.data.username
+        })
+      }
+  } catch(error) {
+    console.error("Error trying to log in")
+    console.error(error)
+  }
+}
+
+logout = async () => {
+  try {
+    const url = process.env.REACT_APP_API_URL + "/api/v1/users/logout"
+
+    const logoutResponse = await fetch(url, {
+      credentials: 'include'
+    })
+    console.log("logoutResponse", logoutResponse);
+    const logoutJson = await logoutResponse.json()
+    console.log("logoutJson", logoutJson);
+
+    if(logoutResponse.status === 200) {
+      this.setState({
+        loggedIn: false,
+        loggedInUsername: ''
+      })
+
+    }
+
+  } catch(error) {
+    console.error("Error logging out")
+    console.error(error)
+  }
+}
+
+  render() {
+    return (
+      <div className="App">
+        {
+          this.state.loggedIn
+          ?
+          <React.Fragment>
+            <Header username={this.state.loggedInUsername} logout={this.logout} />
+
+          </React.Fragment>
+          :
+          <LoginRegisterForm
+            login={this.login}
+            register={this.register}
+          />
+        }
+      </div>
+    );
+  }
+}
