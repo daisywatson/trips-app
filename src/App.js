@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import Map from './Map';
+import Map from './Map';
 import LoginRegisterForm from './LoginRegisterForm';
 import Header from './Header';
 
@@ -100,12 +100,13 @@ logout = async () => {
   render() {
     return (
       <div className="App">
+            <h1>Trip Planner</h1>
         {
           this.state.loggedIn
           ?
           <React.Fragment>
             <Header username={this.state.loggedInUsername} logout={this.logout} />
-
+            <Map />
           </React.Fragment>
           :
           <LoginRegisterForm

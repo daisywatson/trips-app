@@ -8,8 +8,8 @@ export default function Header(props) {
   }
   return(
     <nav style={headerStyle}>
-      <p>Logged in as {props.username}.&nbsp;
-        <span className="fake-link" onClick={props.logout}>(Log out)</span>
+      <p>Logged in as {props.username}
+        <span className="fake-link" onClick={props.logout}> | Log out</span>
       </p>
     </nav>
   )
