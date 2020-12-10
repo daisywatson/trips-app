@@ -42,20 +42,20 @@ export default class NewDogForm extends Component {
 
     this.setState({
       name: '',
-      center_lat: 0,
-      center_long: 0,
+      center_lat: 1,
+      center_long: 1,
       pin1_title: '',
       pin1_subtitle: '',
       pin1_text: '1',
       pin1_color: 'red',
-      pin1_lat: 0,
-      pin1_long: 0,
+      pin1_lat: 1,
+      pin1_long: 1,
       pin2_title: '',
       pin2_subtitle: '',
       pin2_text: '2',
       pin2_color: 'blue',
-      pin2_lat: 0,
-      pin2_long: 0,
+      pin2_lat: 1,
+      pin2_long: 1,
       date: '',
       time: ''
     })
