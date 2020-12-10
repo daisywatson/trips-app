@@ -48,6 +48,7 @@ register = async (registerInfo) => {
 login = async (loginInfo) => {
   console.log("login() in App.js called with the following info", loginInfo);
   const url = process.env.REACT_APP_API_URL + '/api/v1/users/login'
+  console.log("the url:", url)
 
   try {
     const loginResponse = await fetch(url, {
