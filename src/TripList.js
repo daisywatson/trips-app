@@ -8,10 +8,11 @@ export default function TripList(props) {
       <Card key={trip.id} color={"red"}>
         <Card.Content textAlign={"center"}>
           <Card.Header>
-            {trip.name}
+            <span className="fake-link" onClick={()=> props.showTrip(trip.id)}>
+            {trip.name}</span>
           </Card.Header>
           <Card.Meta>
-            From {trip.pin1_name} to {trip.pin2_name}
+            From {trip.pin1_title} to {trip.pin2_title}
           </Card.Meta>
           <Card.Description>
             {trip.date} at {trip.time}
@@ -26,7 +27,7 @@ export default function TripList(props) {
           </Button>
           <Button
             basic color='green'
-            onClick={ ()=> props.tripDog(dog.id) }
+            onClick={ ()=> props.editTrip(trip.id) }
           >
             Edit {trip.name}
           </Button>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Map from './Map';
 import LoginRegisterForm from './LoginRegisterForm';
+import DisplayContainer from './DisplayContainer';
+import UserPage from './UserPage';
 import Header from './Header';
 
 export default class App extends Component {
@@ -106,7 +108,7 @@ logout = async () => {
           ?
           <React.Fragment>
             <Header username={this.state.loggedInUsername} logout={this.logout} />
-            <Map />
+            <UserPage />
           </React.Fragment>
           :
           <LoginRegisterForm

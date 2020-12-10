@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import TripList from './TripList'
 import NewTripForm from './NewTripForm'
-import EditTripModal from '../EditTripModal'
+import EditTripModal from './EditTripModal'
+import Map from './Map'
+// import DisplayContainer from './DisplayContainer'
 
 export default class UserPage extends Component {
 
@@ -10,7 +12,8 @@ export default class UserPage extends Component {
 
     this.state = {
       trips: [],
-      idOfTripToEdit: -1
+      idOfTripToEdit: -1,
+      idOfTripToShow: -1
     }
   }
 
@@ -20,7 +23,7 @@ export default class UserPage extends Component {
 
   getTrips = async () => {
     try {
-      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/"
+      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/mypage"
       console.log("about to fetch data from:")
       console.log(url)
       const tripsResponse = await fetch(url, {
@@ -44,7 +47,7 @@ export default class UserPage extends Component {
     console.log(idOfTripToDelete)
 
     try {
-      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/" + idOfTripToDelete
+      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/mypage/" + idOfTripToDelete
 
       const deleteTripResponse = await fetch(url, {
         credentials: 'include',
@@ -69,7 +72,7 @@ export default class UserPage extends Component {
     console.log("here is the trip you want to add")
     console.log(tripToAdd)
     try {
-      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/"
+      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/mypage/create"
       const createTripResponse = await fetch(url, {
         credentials: 'include',
         method: 'POST',
@@ -101,9 +104,17 @@ export default class UserPage extends Component {
     })
   }
 
+  showTrip = (idOfTripToShow) => {
+    console.log("you are trying to show trip with id: ", idOfTripToShow)
+
+    this.setState({
+      idOfTripToShow: idOfTripToShow
+    })
+  }
+
   updateTrip = async (updatedTripInfo) => {
     try {
-      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/" + this.state.idOfTripToEdit
+      const url = process.env.REACT_APP_API_URL + "/api/v1/trips/mypage/" + this.state.idOfTripToEdit
 
       const updateTripResponse = await fetch(url, {
         credentials: 'include',
@@ -115,12 +126,12 @@ export default class UserPage extends Component {
       })
 
       console.log("updateTripResponse", updateTripResponse)
-      const updateTripson = await updateTripResponse.json()
+      const updateTripJson = await updateTripResponse.json()
       console.log("updateTripJson", updateTripJson)
 
-      if(updateTripResponse.status == 200) {
+      if(updateTripResponse.status === 200) {
         const trips = this.state.trips
-        const indexOfTripBeingUpdated = trips.findIndex(trip => trip.id == this.state.idOfTripToEdit)
+        const indexOfTripBeingUpdated = trips.findIndex(trip => trip.id === this.state.idOfTripToEdit)
         trips[indexOfTripBeingUpdated] = updateTripJson.data
         this.setState({
           trips: trips,
@@ -139,6 +150,12 @@ export default class UserPage extends Component {
    })
  }
 
+ closeShowModal = () => {
+  this.setState({
+    idOfTripToShow: -1
+  })
+}
+
   render() {
     return (
       <React.Fragment>
@@ -146,8 +163,9 @@ export default class UserPage extends Component {
         <NewTripForm createTrip={this.createTrip}/>
         <TripList
           trips={this.state.trips}
-          deleteTrip={this.deleteTrips}
+          deleteTrip={this.deleteTrip}
           editTrip={this.editTrip}
+          showTrip={this.showTrip}
         />
         {
           this.state.idOfTripToEdit !== -1
@@ -157,6 +175,15 @@ export default class UserPage extends Component {
             tripToEdit={this.state.trips.find((trip) => trip.id === this.state.idOfTripToEdit)}
             updateTrip={this.updateTrip}
             closeModal={this.closeModal}
+          />
+        }
+        {
+          this.state.idOfTripToShow !== -1
+          &&
+          <Map
+            key={this.state.idOfTripToShow}
+            tripToShow={this.state.trips.find((trip) => trip.id === this.state.idOfTripToShow)}
+            closeShowModal={this.closeShowModal}
           />
         }
       </React.Fragment>

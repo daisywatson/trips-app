@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Form, Button, Label, Segment } from 'semantic-ui-react'
 
 export default class NewDogForm extends Component {
-  let today = new Date()
   constructor(props) {
     super(props)
 
@@ -22,8 +21,8 @@ export default class NewDogForm extends Component {
       pin2_color: 'blue',
       pin2_lat: 0,
       pin2_long: 0,
-      date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-      time: today.getHours() + ':' + today.getMinutes()
+      date: '',
+      time: ''
     }
   }
 
@@ -57,8 +56,8 @@ export default class NewDogForm extends Component {
       pin2_color: 'blue',
       pin2_lat: 0,
       pin2_long: 0,
-      date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-      time: today.getHours() + ':' + today.getMinutes()
+      date: '',
+      time: ''
     })
   }
 
@@ -78,7 +77,7 @@ export default class NewDogForm extends Component {
           <Label>Map Center Latitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="center_lat"
             value={this.state.center_lat}
             placeholder="Enter a latitude value for the center of the map"
@@ -87,7 +86,7 @@ export default class NewDogForm extends Component {
           <Label>Map Center Longitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="center_long"
             value={this.state.center_long}
             placeholder="Enter a longitude value for the center of the map"
@@ -128,7 +127,7 @@ export default class NewDogForm extends Component {
           <Label>Starting Location Pin Latitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="pin1_lat"
             value={this.state.pin1_lat}
             placeholder="Enter a latitude value for the starting pin location"
@@ -137,7 +136,7 @@ export default class NewDogForm extends Component {
           <Label>Starting Location Pin Longitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="pin1_long"
             value={this.state.pin1_long}
             placeholder="Enter a longitude value for the starting pin location"
@@ -178,7 +177,7 @@ export default class NewDogForm extends Component {
           <Label>Destination Location Pin Latitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="pin2_lat"
             value={this.state.pin2_lat}
             placeholder="Enter a latitude value for the destination pin location"
@@ -187,7 +186,7 @@ export default class NewDogForm extends Component {
           <Label>Destination Location Pin Longitude:</Label>
           <Form.Input
             type="number"
-            step=0.000000000000001
+            step="0.000000000000001"
             name="pin2_long"
             value={this.state.pin2_long}
             placeholder="Enter a longitude value for the center of the map"
