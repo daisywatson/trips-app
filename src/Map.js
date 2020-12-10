@@ -78,7 +78,11 @@ export default class Map extends Component{
   //   editPins(pin1, pin2)
   // }
 
-
+  // consolePrint = () => {
+  //   console.log(process.env.REACT_APP_BING_API_KEY)
+  //   console.log(this.state.center);
+  //   console.log(this.state.pins);
+  // }
 
 
   render() {
@@ -89,6 +93,8 @@ export default class Map extends Component{
             <h3>{this.props.tripToShow.name}</h3>
           </Header>
           <Modal.Content>
+              <p> bingMapKey: {process.env.REACT_APP_BING_API_KEY} </p>
+              <p> center: {this.state.center} </p>
             <div className="App" style={{ height: '400px', width: '600px' }}>
               <ReactBingmaps
                 bingmapKey = {process.env.REACT_APP_BING_API_KEY}
