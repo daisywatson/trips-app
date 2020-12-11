@@ -31,6 +31,11 @@ API: Bing Maps
 4. The edit button will launch a form modal where the user can change information and then press the update trip button at the bottom of the form to update
 
 ## Wireframes
+![Create Route](https://github.com/daisywatson/trips-app/blob/master/Images/Create-route.jpg)
+![Edit Route](https://github.com/daisywatson/trips-app/blob/master/Images/Edit-route.jpg)
+![Homepage](https://github.com/daisywatson/trips-app/blob/master/Images/Homepage.jpg)
+![Map](https://github.com/daisywatson/trips-app/blob/master/Images/Map.jpg)
+![User Personal Page](https://github.com/daisywatson/trips-app/blob/master/Images/User-personal-page.jpg)
 
 ## Entity Relationship Diagram
 ![ER Diagram](https://github.com/daisywatson/trips-app/blob/master/Images/Database-ER%20diagram.jpeg)
