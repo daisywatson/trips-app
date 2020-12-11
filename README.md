@@ -33,7 +33,7 @@ API: Bing Maps
 ## Wireframes
 
 ## Entity Relationship Diagram
-![Alt](/Database-ER diagram.jpeg "Er Diagram")
+![ER Diagram](https://github.com/daisywatson/trips-app/blob/master/Images/Database-ER%20diagram.jpeg)
 
 ## Unsolved Problems
 - exception handling for inputting form data has not been added yet
