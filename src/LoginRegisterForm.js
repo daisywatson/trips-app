@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Label, Container } from 'semantic-ui-react'
 
+
 export default class LoginRegisterForm extends Component {
 
   constructor() {
@@ -46,7 +47,7 @@ handleSubmit = (event) => {
         <h2>{this.state.action} here</h2>
         <Form onSubmit={this.handleSubmit}>
          <React.Fragment>
-           <Label>Username:</Label>
+           <Label color='green'>Username:</Label>
            <Form.Input
              type="text"
              name="username"
@@ -55,7 +56,7 @@ handleSubmit = (event) => {
              onChange={this.handleChange}
            />
          </React.Fragment>
-          <Label>Password:</Label>
+          <Label color='green'>Password:</Label>
           <Form.Input
             type="password"
             name="password"
@@ -64,7 +65,7 @@ handleSubmit = (event) => {
             onChange={this.handleChange}
           />
           <p>
-          <Button type="Submit">
+          <Button color='blue' type="Submit">
             { this.state.action === "Log In" ? "Log in" : "Sign up"}
           </Button>
           </p>

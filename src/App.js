@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginRegisterForm from './LoginRegisterForm';
 import UserPage from './UserPage';
 import Header from './Header';
+import './App.css'
 
 export default class App extends Component {
   constructor() {

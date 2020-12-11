@@ -5,7 +5,7 @@ export default function TripList(props) {
 
   const trips = props.trips.map(trip => {
     return (
-      <Card key={trip.id} color={"red"}>
+      <Card key={trip.id} color={"green"}>
         <Card.Content textAlign={"center"}>
           <Card.Header>
             <span className="fake-link" onClick={()=> props.showTrip(trip.id)}>

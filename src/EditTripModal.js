@@ -46,6 +46,7 @@ export default class EditTripModal extends Component {
         </Header>
         <Modal.Content>
           <Form onSubmit={this.handleSubmit}>
+          <Label color='green'>Trip Name:</Label>
           <Form.Input
             type="text"
             name="name"
@@ -53,7 +54,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a name for this trip"
             onChange={this.handleChange}
           />
-          <Label>Map Center Latitude:</Label>
+          <Label color='green'>Map Center Latitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -62,7 +63,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a latitude value for the center of the map"
             onChange={this.handleChange}
           />
-          <Label>Map Center Longitude:</Label>
+          <Label color='green'>Map Center Longitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -71,7 +72,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a longitude value for the center of the map"
             onChange={this.handleChange}
           />
-          <Label>Starting Location Pin Name:</Label>
+          <Label color='green'>Starting Location Pin Name:</Label>
           <Form.Input
             type="text"
             name="pin1_title"
@@ -79,7 +80,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter the name for the first pin on the map"
             onChange={this.handleChange}
           />
-          <Label>Starting Location Pin Subtitle:</Label>
+          <Label color='green'>Starting Location Pin Subtitle:</Label>
           <Form.Input
             type="text"
             name="pin1_subtitle"
@@ -87,7 +88,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a subheading for the first pin (optional)"
             onChange={this.handleChange}
           />
-          <Label>First Pin Marker Name:</Label>
+          <Label color='green'>First Pin Marker Name:</Label>
           <Form.Input
             type="text"
             name="pin1_text"
@@ -95,7 +96,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter one letter or number for the marker on the map (optional)"
             onChange={this.handleChange}
           />
-          <Label>First Pin Marker Color:</Label>
+          <Label color='green'>First Pin Marker Color:</Label>
           <Form.Input
             type="text"
             name="pin1_color"
@@ -103,7 +104,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a color for the marker on the map (optional) i.e. red"
             onChange={this.handleChange}
           />
-          <Label>Starting Location Pin Latitude:</Label>
+          <Label color='green'>Starting Location Pin Latitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -112,7 +113,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a latitude value for the starting pin location"
             onChange={this.handleChange}
           />
-          <Label>Starting Location Pin Longitude:</Label>
+          <Label color='green'>Starting Location Pin Longitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -121,7 +122,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a longitude value for the starting pin location"
             onChange={this.handleChange}
           />
-          <Label>Destination Location Pin Name:</Label>
+          <Label color='green'>Destination Location Pin Name:</Label>
           <Form.Input
             type="text"
             name="pin2_title"
@@ -129,7 +130,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter the name for the second pin on the map"
             onChange={this.handleChange}
           />
-          <Label>Destination Location Pin Subtitle:</Label>
+          <Label color='green'>Destination Location Pin Subtitle:</Label>
           <Form.Input
             type="text"
             name="pin2_subtitle"
@@ -137,7 +138,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a subheading for the second pin (optional)"
             onChange={this.handleChange}
           />
-          <Label>Second Pin Marker Name:</Label>
+          <Label color='green'>Second Pin Marker Name:</Label>
           <Form.Input
             type="text"
             name="pin2_text"
@@ -145,7 +146,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter one letter or number for the marker on the map (optional)"
             onChange={this.handleChange}
           />
-          <Label>Second Pin Marker Color:</Label>
+          <Label color='green'>Second Pin Marker Color:</Label>
           <Form.Input
             type="text"
             name="pin2_color"
@@ -153,7 +154,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a color for the marker on the map (optional) i.e. blue"
             onChange={this.handleChange}
           />
-          <Label>Destination Location Pin Latitude:</Label>
+          <Label color='green'>Destination Location Pin Latitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -162,7 +163,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a latitude value for the destination pin location"
             onChange={this.handleChange}
           />
-          <Label>Destination Location Pin Longitude:</Label>
+          <Label color='green'>Destination Location Pin Longitude:</Label>
           <Form.Input
             type="number"
             step="0.000000000000001"
@@ -171,7 +172,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a longitude value for the center of the map"
             onChange={this.handleChange}
           />
-          <Label>Date of Trip:</Label>
+          <Label color='green'>Date of Trip:</Label>
           <Form.Input
             type="date"
             name="date"
@@ -179,7 +180,7 @@ export default class EditTripModal extends Component {
             placeholder="Enter a date for the trip"
             onChange={this.handleChange}
           />
-          <Label>Time of Trip:</Label>
+          <Label color='green'>Time of Trip:</Label>
           <Form.Input
             type="time"
             name="time"
@@ -188,7 +189,7 @@ export default class EditTripModal extends Component {
             onChange={this.handleChange}
           />
             <Modal.Actions>
-              <Button type="Submit">Update Trip</Button>
+              <Button color="blue" type="Submit">Update Trip</Button>
             </Modal.Actions>
           </Form>
         </Modal.Content>
