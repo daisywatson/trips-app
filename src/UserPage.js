@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import TripList from './TripList'
-import NewTripForm from './NewTripForm'
 import EditTripModal from './EditTripModal'
 import Map from './Map'
-// import DisplayContainer from './DisplayContainer'
+import DisplayContainer from './DisplayContainer'
 
 export default class UserPage extends Component {
 
@@ -156,11 +155,12 @@ export default class UserPage extends Component {
   })
 }
 
+
   render() {
     return (
       <React.Fragment>
         <h2>Your Trips</h2>
-        <NewTripForm createTrip={this.createTrip}/>
+        <DisplayContainer createTrip={this.createTrip}/>
         <TripList
           trips={this.state.trips}
           deleteTrip={this.deleteTrip}

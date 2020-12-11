@@ -9,16 +9,17 @@ export default class LoginRegisterForm extends Component {
     this.state = {
       password: '',
       username: '',
-      action: 'Login'
+      action: 'Log In',
     }
   }
 
 switchForm = () => {
-  if(this.state.action === "Login") {
+  if(this.state.action === "Log In") {
     this.setState({ action: "Register" })
   } else {
-    this.setState({ action: "Login" })
+    this.setState({ action: "Log In" })
   }
+  this.props.setStatus('');
 }
 
 handleChange = (event) => {
@@ -62,12 +63,15 @@ handleSubmit = (event) => {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <p>
           <Button type="Submit">
-            { this.state.action === "Login" ? "Log in" : "Sign up"}
+            { this.state.action === "Log In" ? "Log in" : "Sign up"}
           </Button>
+          </p>
         </Form>
+
         {
-          this.state.action === "Login"
+          this.state.action === "Log In"
           ?
           <p>
             Need an account? Sign up <span className="fake-link" onClick={this.switchForm}>here</span>.

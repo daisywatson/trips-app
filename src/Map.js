@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react'
 import { ReactBingmaps } from 'react-bingmaps';
-import { Container, Form, Button, Label, Modal, Header } from 'semantic-ui-react'
+import { Modal, Header } from 'semantic-ui-react'
 
 export default class Map extends Component{
   constructor(props) {

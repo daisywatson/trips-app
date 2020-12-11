@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Map from './Map';
 import LoginRegisterForm from './LoginRegisterForm';
-import DisplayContainer from './DisplayContainer';
 import UserPage from './UserPage';
 import Header from './Header';
 
@@ -11,15 +9,22 @@ export default class App extends Component {
 
     this.state = {
       loggedIn: false,
-      loggedInUsername: ''
+      loggedInUsername: '',
+      statusMessage: ''
     }
   }
 
+setStatus = (message) => {
+  this.setState({
+    statusMessage: message
+  })
+}
 
 register = async (registerInfo) => {
   console.log("register() in App.js called with the following info", registerInfo);
   const url = process.env.REACT_APP_API_URL + "/api/v1/users/register"
 
+  let errorToUser = ''
   try {
     const registerResponse = await fetch(url, {
       credentials: 'include',
@@ -31,6 +36,7 @@ register = async (registerInfo) => {
     })
     console.log("registerResponse", registerResponse);
     const registerJson = await registerResponse.json()
+    errorToUser = registerJson.message
     console.log("registerJson", registerJson);
 
      if(registerResponse.status === 201) {
@@ -38,11 +44,14 @@ register = async (registerInfo) => {
          loggedIn: true,
          loggedInUsername: registerJson.data.username
        })
+       errorToUser = ''
      }
   } catch(err) {
     console.error("Error trying to register with API")
     console.error(err)
   }
+
+  this.setStatus(errorToUser);
 }
 
 login = async (loginInfo) => {
@@ -50,6 +59,7 @@ login = async (loginInfo) => {
   const url = process.env.REACT_APP_API_URL + '/api/v1/users/login'
   console.log("the url:", url)
 
+  let errorToUser = ''
   try {
     const loginResponse = await fetch(url, {
       credentials: 'include',
@@ -61,6 +71,7 @@ login = async (loginInfo) => {
     })
     console.log("loginResponse", loginResponse);
     const loginJson = await loginResponse.json()
+    errorToUser = loginJson.message
     console.log("loginJson", loginJson);
 
     if(loginResponse.status === 200) {
@@ -68,11 +79,14 @@ login = async (loginInfo) => {
           loggedIn: true,
           loggedInUsername: loginJson.data.username
         })
+        errorToUser = ''
       }
   } catch(error) {
     console.error("Error trying to log in")
     console.error(error)
   }
+
+  this.setStatus(errorToUser);
 }
 
 logout = async () => {
@@ -112,10 +126,15 @@ logout = async () => {
             <UserPage />
           </React.Fragment>
           :
-          <LoginRegisterForm
-            login={this.login}
-            register={this.register}
-          />
+          <React.Fragment>
+            <LoginRegisterForm
+              login={this.login}
+              register={this.register}
+              statusMessage={this.statusMessage}
+              setStatus={this.setStatus}
+            />
+            <p> {this.state.statusMessage} </p>
+          </React.Fragment>
         }
       </div>
     );

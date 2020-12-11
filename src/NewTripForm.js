@@ -59,6 +59,8 @@ export default class NewDogForm extends Component {
       date: '',
       time: ''
     })
+
+    this.props.setShowForm()
   }
 
   render()  {
