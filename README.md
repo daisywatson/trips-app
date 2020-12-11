@@ -33,6 +33,7 @@ API: Bing Maps
 ## Wireframes
 
 ## Entity Relationship Diagram
+![Alt](/Database-ER diagram.jpeg "Er Diagram")
 
 ## Unsolved Problems
 - exception handling for inputting form data has not been added yet
